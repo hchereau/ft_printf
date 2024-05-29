@@ -1,5 +1,11 @@
 NAME := libftprintf.a
 
+### LIBFT #####################################################################
+
+LIBFT_FOLDER := libft/
+
+LIBFT := $(LIBFT_FOLDER)/libft.a
+
 ### SRCS ######################################################################
 
 PATH_SRCS := srcs/
@@ -18,4 +24,47 @@ OBJS = $(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
 
 INCLUDES_FT_PRINTF := includes/
 
-INCLUDES_LIBFT :=
+INCLUDES_LIBFT := $(LIBFT_FOLDER)/includes/
+
+HEADERS += $(INCLUDES_FT_PRINTF)/ft_printf.h
+HEADERS += $(INCLUDES_LIBFT)/libft.h
+
+### COMPILATION ###############################################################
+
+CC := clang
+CFLAGS += -Werror
+CFLAGS += -Wextra
+CFLAGS += -Wall
+
+ifeq ($(debug), true)
+	CFLAGS += -fsanitize=address,undefined -g3
+endif
+
+AR = ar
+
+### RULE ######################################################################
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(OBJS)
+		$(AR) rcs $(NAME) $(OBJS)
+
+$(OBJS): $(PATH_OBJS)/%.o: %.c $(HEADERS)
+		mkdir -p $(PATH_OBJS)
+		$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT):
+		$(MAKE) -C $(LIBFT_FOLDER)
+
+clean:
+		$(RM) -R $(PATH_OBJS)
+		$(MAKE) -C $(LIBFT_FOLDER) clean
+
+fclean: clean
+		$(RM) $(NAME)
+		$(MAKE) -C $(LIBFT_FOLDER) fclean
+
+re: fclean
+	$(MAKE)
+
+.PHONY: all clean fclean re
