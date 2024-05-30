@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 18:19:36 by hucherea          #+#    #+#             */
-/*   Updated: 2024/05/29 18:46:55 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:05:15 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdio.h>
 
 # define BUFFER_SIZE 1024
 
-int	ft_printf(const char *str, ...);
+enum	e_state{standard, converter, end};
+
+//int	ft_printf(const char *str, ...);
 
 #endif
