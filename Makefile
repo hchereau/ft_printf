@@ -47,14 +47,19 @@ AR = ar
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
+		cp $(LIBFT) $(NAME)
 		$(AR) rcs $(NAME) $(OBJS)
 
 $(OBJS): $(PATH_OBJS)/%.o: %.c $(HEADERS)
 		mkdir -p $(PATH_OBJS)
-		$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDES_FT_PRINTF) -I $(INCLUDES_LIBFT)
 
 $(LIBFT):
 		$(MAKE) -C $(LIBFT_FOLDER)
+
+run: $(NAME)
+	$(CC) $(CFLAGS) srcs/main.c -l ftprintf -I $(INCLUDES_FT_PRINTF) -I $(INCLUDES_LIBFT)
+	./a.out
 
 clean:
 		$(RM) -R $(PATH_OBJS)

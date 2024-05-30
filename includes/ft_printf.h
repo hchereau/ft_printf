@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 18:19:36 by hucherea          #+#    #+#             */
-/*   Updated: 2024/05/30 17:05:15 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:23:50 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 enum	e_state{standard, converter, end};
 
 //int	ft_printf(const char *str, ...);
+void	ft_test(void);
 
 #endif
