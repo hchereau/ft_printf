@@ -58,8 +58,9 @@ $(LIBFT):
 		$(MAKE) -C $(LIBFT_FOLDER)
 
 run: $(NAME)
-	$(CC) $(CFLAGS) srcs/main.c -l ftprintf -I $(INCLUDES_FT_PRINTF) -I $(INCLUDES_LIBFT)
+	$(CC) $(CFLAGS) srcs/main.c libftprintf.a -I $(INCLUDES_FT_PRINTF) -I $(INCLUDES_LIBFT)
 	./a.out
+	rm a.out
 
 clean:
 		$(RM) -R $(PATH_OBJS)
@@ -73,3 +74,4 @@ re: fclean
 	$(MAKE)
 
 .PHONY: all clean fclean re
+.SILENT: run
